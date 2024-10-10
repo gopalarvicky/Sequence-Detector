@@ -84,6 +84,106 @@ endmodule
 output
 ![Screenshot 2024-10-10 140136](https://github.com/user-attachments/assets/48175b97-2c10-4527-bdc9-e1901f3e66b4)
 
+Verilog Code for Sequence Detector Using Mealy FSM
+```verilog
+module fsm_sequence_mealy(
+    input clk,
+    input reset,
+    input run,
+    output reg [3:0] count
+);
+
+    // State encoding
+    localparam s0 = 4'd0;
+    localparam s2 = 4'd2;
+    localparam s4 = 4'd4;
+    localparam s6 = 4'd6;
+    localparam s8 = 4'd8;
+    localparam s10 = 4'd10;
+    localparam s12 = 4'd12;
+
+    reg [3:0] current_state, next_state;
+
+    // State transition logic
+    always @(posedge clk or posedge reset) begin
+        if (reset) begin
+            current_state <= s0;  // Initialize to state s0 on reset
+        end else begin
+            current_state <= next_state;  // Move to next state on clock edge
+        end
+    end
+
+    // Next state and output logic
+    always @(*) begin
+        next_state = current_state;  // Default to stay in the current state
+        
+        // Mealy-style output: output depends on both the current state and input (run)
+        case (current_state)
+            s0: begin
+                if (run) begin
+                    next_state = s2;
+                    count = 4'd2;  // Output depends on the input and state
+                end else begin
+                    count = 4'd0;
+                end
+            end
+            s2: begin
+                if (run) begin
+                    next_state = s4;
+                    count = 4'd4;
+                end else begin
+                    count = 4'd2;
+                end
+            end
+            s4: begin
+                if (run) begin
+                    next_state = s6;
+                    count = 4'd6;
+                end else begin
+                    count = 4'd4;
+                end
+            end
+            s6: begin
+                if (run) begin
+                    next_state = s8;
+                    count = 4'd8;
+                end else begin
+                    count = 4'd6;
+                end
+            end
+            s8: begin
+                if (run) begin
+                    next_state = s10;
+                    count = 4'd10;
+                end else begin
+                    count = 4'd8;
+                end
+            end
+            s10: begin
+                if (run) begin
+                    next_state = s12;
+                    count = 4'd12;
+                end else begin
+                    count = 4'd10;
+                end
+            end
+            s12: begin
+                if (run) begin
+                    next_state = s0;
+                    count = 4'd0;
+                end else begin
+                    count = 4'd12;
+                end
+            end
+            default: begin
+                next_state = s0;
+                count = 4'd0;
+            end
+        endcase
+    end
+
+endmodule
+```
 Testbench for Sequence Detector (Moore and Mealy FSMs)
 
 // sequence_detector_tb.v
