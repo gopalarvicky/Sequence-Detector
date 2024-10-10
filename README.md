@@ -184,6 +184,9 @@ module fsm_sequence_mealy(
 
 endmodule
 ```
+output
+![Screenshot 2024-10-10 142411](https://github.com/user-attachments/assets/7e1aeb0f-668e-4fe5-ba76-746e26bf64e3)
+
 Testbench for Sequence Detector (Moore and Mealy FSMs)
 
 // sequence_detector_tb.v
