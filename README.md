@@ -27,9 +27,8 @@ Analyze the waveform to ensure both the Moore and Mealy machines detect the sequ
 Save and Document Results:
 
 Capture the waveforms and include the results in the final report.
-```verilog
 Verilog Code for Sequence Detector Using Moore FSM
-
+```verilog
 module fsm_sequence(
     input clk,
     input reset,
@@ -83,6 +82,7 @@ module fsm_sequence(
 endmodule
 ```
 output
+![Screenshot 2024-10-10 140136](https://github.com/user-attachments/assets/48175b97-2c10-4527-bdc9-e1901f3e66b4)
 
 Testbench for Sequence Detector (Moore and Mealy FSMs)
 
